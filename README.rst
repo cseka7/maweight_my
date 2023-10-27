@@ -57,7 +57,7 @@ Clone the GitHub repository:
 
 .. code-block:: bash
 
-    > git clone git@github.com:cseka7/maweight.git
+    > git clone https://github.com/cseka7/maweight.git
 
 
 Navigate into the root directory of the repository:
