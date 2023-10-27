@@ -188,7 +188,7 @@ def _save_parameters_to_file(params, filename):
             file.write(format_string % tuple([k] + params[k]))
     file.close()
 
-def _prepare_files(image_parameters, tmp_dir):
+def _prepare_files(image_parameters, tmp_dir, out_type):
     """
     Those image parameters which are not file paths are saved as files in the
     temporary directory, the dimension of images if extracted.
@@ -205,7 +205,7 @@ def _prepare_files(image_parameters, tmp_dir):
         if isinstance(f, str):
             # if argument is filename
             file_arguments.append(f)
-            if f.endswith('.nii.gz'):
+            if f.endswith('.nii.gz') or f.endswith('.nii'):
                 image_dim= 3
             elif f[-3:].lower() in ['tif']:
                 image_dim= 2
@@ -213,7 +213,8 @@ def _prepare_files(image_parameters, tmp_dir):
             # if argument is 3D array or NiftiImage object
             if isinstance(f, np.ndarray):
                 f= nib.Nifti1Image(f, affine=np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]))
-            tmp_file= os.path.join(tmp_dir, str(i) + '.nii.gz')
+            
+            tmp_file= os.path.join(tmp_dir, str(i) + out_type)
             nib.save(f, tmp_file)
             file_arguments.append(tmp_file)
             image_dim= 3
@@ -338,14 +339,17 @@ def register_and_transform(moving,
     params= params or parameters_default()
     
     tmp_dir= work_dir or tempfile.mkdtemp()
-    
-    file_arguments, image_dim= _prepare_files([moving, fixed] + to_fit, tmp_dir)
+
+    out_image_type = params['ResultImageFormat'] or 'nii.gz'
+                                     
+    file_arguments, image_dim= _prepare_files([moving, fixed] + to_fit, tmp_dir, out_image_type)
     
     if not image_dim is None:
         params['FixedImageDimension']= image_dim
         params['MovingImageDimension']= image_dim
         if image_dim == 3:
             params['ResultImageFormat']= 'nii.gz'
+            out_image_type = 'nii.gz'
         elif image_dim == 2:
             params['ResultImageFormat']= 'tif'
             params['ResultImagePixelType']= 'float'
@@ -371,7 +375,7 @@ def register_and_transform(moving,
     
     if not registered_image_path is None:
         if image_dim == 3:
-            shutil.copyfile(os.path.join(tmp_dir, 'result.0.nii.gz'), registered_image_path)
+            shutil.copyfile(os.path.join(tmp_dir, f'result.0.{out_image_type}'), registered_image_path)
         elif image_dim == 2:
             shutil.copyfile(os.path.join(tmp_dir, 'result.0.tif'), registered_image_path)
     
@@ -395,13 +399,13 @@ def register_and_transform(moving,
         
         if output_names is None:
             if image_dim == 3:
-                results.append(nib.load(os.path.join(tmp_dir, 'result.nii.gz')))
+                results.append(nib.load(os.path.join(tmp_dir, f'result.{out_image_type}')))
                 results[-1].get_fdata()
             elif image_dim == 2:
                 results.append(imageio.imread(os.path.join(tmp_dir, 'result.tif')))
         else:
             if image_dim == 3:
-                shutil.copyfile(os.path.join(tmp_dir, 'result.nii.gz'), output_names[i])
+                shutil.copyfile(os.path.join(tmp_dir, f'result.{out_image_type}'), output_names[i])
                 results.append(output_names[i])
             elif image_dim == 2:
                 shutil.copyfile(os.path.join(tmp_dir, 'result.tif'), output_names[i])
