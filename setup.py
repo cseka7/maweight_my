@@ -25,7 +25,8 @@ setup(name='maweight',
               'imageio',
               'scipy',
               'scikit-learn',
-              'xgboost'
+              'xgboost',
+              'jsonlines'
               ],
       test_suite='nose.collector',
       tests_require=['nose'],
