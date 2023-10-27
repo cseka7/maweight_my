@@ -8,18 +8,28 @@ About
 
 A detailed description of the implemented methodology can be found in the paper:
 
-The package is used intensively in the case study of estimating weights of meat cuts from the CT images of rabbit in the repository: https://github.com/gykovacs/rabbit_ct_weights
+The package is used intensively in the case study of estimating weights of meat cuts from the CT images of chicken in the repository: https://github.com/cseka7/chicken_ct_weights
 
 If you use the package, please consider citing the paper:
 
 .. code-block:: BibTex
 
-    @article{Csoka2021,
+..    @article{Csoka2022,
         author={\'Ad\'am Cs\'oka and Gy\"orgy Kov\'acs and Vir\'ag \'Acs and Zsolt Matics and Zsolt Gerencs\'er and Zsolt Szendr\"o and \"Ors Petneh\'azy and Imre Repa and Mariann Moizs and Tam\'as Donk\'o},
-        title={Multi-atlas segmentation based estimation of weights from CT scans in farm animal imaging and its applications to rabbit breeding programs},
-        year={2021}
+        title={A general technique for the estimation of farm animal body part weights from CT scans and its applications in a rabbit breeding program},
+        year={2022},
+        journal = {}
+        doi = {10.1016/j.compag.2022.106865},
+        url = {https://doi.org/10.1016/j.compag.2022.106865}
     }
 
+    @article{Csoka2024,
+        author={\'Ad\'am Cs\'oka and Szilvia Eszter Simon and Tam\'as P\'eter Farkas and S\'andor Sz\'asz and Zolt\'an S\"ut\''o and \"Ors Petneh\'azy and Gy\"orgy Kov\'acs snd Imre Repa and Tam\'as Donk\'o},
+        title={ESTIMATION OF THE VALUABLE BROILER CHICKEN MEAT PARTS MASS FROM CT IMAGES USING ELASTIC REGISTRATION},
+        year={2024}
+        doi = {},
+        url = {}
+       }
 
 Installation (Windows/Linux/Mac)
 -----------
