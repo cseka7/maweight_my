@@ -1,7 +1,0 @@
-numpy
-pandas
-nibabel
-imageio
-scipy
-scikit-learn
-xgboost
