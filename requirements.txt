@@ -7,3 +7,4 @@ nibabel
 scikit-learn
 xgboost
 jsonlines
+matplotlib
