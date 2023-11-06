@@ -26,7 +26,8 @@ setup(name='maweight',
               'scipy',
               'scikit-learn',
               'xgboost',
-              'jsonlines'
+              'jsonlines',
+              'matplotlib'
               ],
       test_suite='nose.collector',
       tests_require=['nose'],
