@@ -14,7 +14,7 @@ If you use the package, please consider citing the paper:
 
 .. code-block:: BibTex
 
-..    @article{Csoka2022,
+    @article{Csoka2022,
         author={\'Ad\'am Cs\'oka and Gy\"orgy Kov\'acs and Vir\'ag \'Acs and Zsolt Matics and Zsolt Gerencs\'er and Zsolt Szendr\"o and \"Ors Petneh\'azy and Imre Repa and Mariann Moizs and Tam\'as Donk\'o},
         title={A general technique for the estimation of farm animal body part weights from CT scans and its applications in a rabbit breeding program},
         year={2022},
